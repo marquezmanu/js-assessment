@@ -62,29 +62,20 @@ define(function() {
     },
 
     curryIt : function(fn) {
-        // var args = Array.prototype.slice.call(arguments, 1);
-        // var funcargs = fn.length;
-        // console.log('args: ' + args);
-        // // console.log(args);
-        // console.log('funcargs: '+ funcargs);
-
-        // function curried(args2) {
-        //     console.log('args2: ' + args2);
-        //     if (args.length >= funcargs) {
-        //         return fn.call(null, args2);
-        //     }
-        //     var pepe  = Array.prototype.slice.apply(arguments);
-        //     console.log('pepe: ' + pepe);
-        //     var concate = args2.concat(pepe);
-        //     console.log('concate: ' + concate);
-        //     return function () {
-        //         return curried(concate);
-        //     };
-        // }
-
-        // console.log('curried ' + curried(args));
-        // return curried(args);
-
+        var curry = function(a){
+            var argsInt =  Array.prototype.slice.call(arguments,0);
+            var innercurry = function(b){
+                argsInt = argsInt.concat(Array.prototype.slice.call(arguments,0));
+                if(argsInt.length < fn.length){
+                    return innercurry;
+                }
+                else{
+                    return fn.apply(null, argsInt);
+                }
+            };
+            return innercurry;
+        };
+        return curry;
     }
   };
 });

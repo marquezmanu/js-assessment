@@ -12,11 +12,9 @@ define(function() {
     },
 
     sum : function(arr) {
-      var sum = 0;
-      for (var i=0; i < arr.length ; i++){
-        sum += arr[i];
-      }
-      return sum;
+      return arr.reduce(function (a, b){
+        return a + b;
+      });
     },
 
     remove : function(arr, item) {
@@ -59,13 +57,9 @@ define(function() {
     },
 
     count : function(arr, item) {
-      var counter = 0;
-      for (var i = 0; i < arr.length ; i++){
-        if (arr[i] === item){
-            counter++;
-        }
-      }
-      return counter;
+      return arr.reduce(function (counter, x) {
+        return x===item ? counter+1 : counter;
+      }, 0);
     },
 
     duplicates : function(arr) {

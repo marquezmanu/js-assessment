@@ -33,8 +33,8 @@ define(function() {
     },
 
     multiply: function(a, b) {
-        console.log(a*b);
-
+        var number = a * b;
+        return (parseFloat(number.toPrecision(1)));
     }
   };
 });
